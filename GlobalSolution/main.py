@@ -101,6 +101,39 @@ while escolha_menu != 0:
                         """)
                     case _:
                         subalgoritmos.exibir_opcao_invalida()
+        case 6:
+            if mercado != "" or empresa != "":
+                print(f"""
+    {linha}
+    ||                         DOAÇÕES                         ||
+    {linha}
+    || 1 --> Alimento                                          ||
+    || 2 --> Dinheiro                                          ||
+    {linha}
+                """)
+                escolha_doacao = int(input("---> Como Supermercado/Empresa, deseja realizar a doação de: "))
+                match escolha_doacao:
+                    case 1:
+                        print("Doação de alimento selecionada!\n(Este tipo de doação não faz parte do nosso benefício "
+                              "EatCard)")
+                        tipo_alimento = input("Digite o alimento que deseja doar: ")
+                        marca_alimento = input("Marca: ")
+                        quant_alimento = input("Quantidade: ")
+                        subalgoritmos.menu_ongs(tipo_alimento)
+                    case 2:
+                        print("Doação de dinheiro selecionada!")
+                        valor_doacao = float(input("Valor: "))
+                        subalgoritmos.menu_ongs(valor_doacao)
+                    case _:
+                        subalgoritmos.exibir_opcao_invalida()
+            elif ong != "" or pessoa_fisica != "":
+                print("")
+            else:
+                print(f"""
+    {linha}
+    ---> Para ir à área de doação, primeiro deve-se 
+    realizar o cadastro!!!...
+    {linha}""")
         case _:
             subalgoritmos.exibir_opcao_invalida()
 if ong != "":

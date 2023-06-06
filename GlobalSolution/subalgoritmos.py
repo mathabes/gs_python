@@ -53,3 +53,29 @@ def exibir_menu_duvidas(duvidas) -> int:
             exibir_opcao_invalida()
             continue
     return escolha
+
+
+def menu_ongs(doacao) -> None:
+    escolha = 0
+    ongs = ["Caça-Fome", "Esperança Global", "Resgate da Dignidade", "Luz da Esperança"]
+    print(f"""
+    {linha}
+    ||                          ONGS                           ||
+    {linha}
+    || 1...........................................: Caça-Fome ||
+    || 2....................................: Esperança Global ||
+    || 3................................: Resgate da Dignidade ||
+    || 4....................................: Luz da Esperança ||
+    {linha}
+    """)
+    while True:
+        try:
+            escolha = int(input("Digite a qual ONG irá doar: "))
+            break
+        except ValueError:
+            exibir_opcao_invalida()
+            continue
+    if doacao is float:
+        print(f"Doação realizada a {ongs[escolha + 1]} no valor de {doacao} reais.")
+    else:
+        print(f"Doação de {doacao} realizada a {ongs[escolha + 1]}.")
