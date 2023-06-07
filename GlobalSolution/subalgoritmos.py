@@ -1,6 +1,7 @@
 linha = "=" * 61
 
 
+# Função utilizada sempre que é necessário exibir uma mensagem de opção inválida
 def exibir_opcao_invalida() -> None:
     print(f"""
     {linha}
@@ -9,6 +10,7 @@ def exibir_opcao_invalida() -> None:
     """)
 
 
+# Função para o cadastro do usuário em qualquer tipo de conta, recebendo os dados necessários por parâmetro
 def cadastro_parceiros(dados_necessarios) -> str:
     dados_informados = ""
     dados = []
@@ -24,6 +26,7 @@ def cadastro_parceiros(dados_necessarios) -> str:
     return dados_informados
 
 
+# Função para o cadastro especificamente de dados float, completando a função acima
 def cadastro_dado_float(dado) -> float:
     valor_digitado = 0
     while True:
@@ -36,6 +39,7 @@ def cadastro_dado_float(dado) -> float:
     return valor_digitado
 
 
+# Função para exibir um menu de duvidas, recebendo as questões por parâmetro
 def exibir_menu_duvidas(duvidas) -> int:
     escolha = 1
     print(f"""
@@ -55,6 +59,8 @@ def exibir_menu_duvidas(duvidas) -> int:
     return escolha
 
 
+# Função que finaliza a área de doaçao, exibindo as ongs pré-cadastradas
+# e recebendo tanto o tipo da doação, quanto seu contéudo
 def menu_ongs(escolha_doacao, conteudo_doacao, medida) -> str:
     escolha = 0
     ongs = ["Caça-Fome", "Esperança Global", "Resgate da Dignidade", "Luz da Esperança"]

@@ -74,7 +74,7 @@ while escolha_menu != 0:
                 print(f"\n{linha}\n--> CADASTRO ONG:")
                 cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_ong)
                 tipo_cadastro = "ONG"
-                print(linha)
+                print(f"{linha}\n--> Cadastro realizado com sucesso!!!\n{linha}")
         case 2:
             # Cadastro como Empresa
 
@@ -88,7 +88,7 @@ while escolha_menu != 0:
                 print(f"\n{linha}\n--> CADASTRO EMPRESA:")
                 cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_empresa)
                 tipo_cadastro = "Empresa"
-                print(linha)
+                print(f"{linha}\n--> Cadastro realizado com sucesso!!!\n{linha}")
         case 3:
             # Cadastro como Supermercado
 
@@ -102,7 +102,7 @@ while escolha_menu != 0:
                 print(f"\n{linha}\n--> CADASTRO SUPERMERCADO:")
                 cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_mercado)
                 tipo_cadastro = "Supermercado"
-                print(linha)
+                print(f"{linha}\n--> Cadastro realizado com sucesso!!!\n{linha}")
         case 4:
             # Cadastro como Pessao Física
 
@@ -116,7 +116,7 @@ while escolha_menu != 0:
                 print(f"\n{linha}\n--> CADASTRO PESSOA FÍSICA:\n(apenas digite ENTER para dados opcionais)")
                 cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_pessoa_fisica)
                 tipo_cadastro = "Pessoa Física"
-                print(linha)
+                print(f"{linha}\n--> Cadastro realizado com sucesso!!!\n{linha}")
         case 5:
             # Menu de Dúvidas Frequentes
 
@@ -126,7 +126,11 @@ while escolha_menu != 0:
 
                     # Respostas
                     case 0:
-                        break
+                        print(f"""
+    {linha}
+    ---> Voltando...
+    {linha}    
+                        """)
                     case 1:
                         print(f"""
     {linha}
