@@ -24,7 +24,7 @@ doacao_realizada = False
 # ------ Descrição do Projeto
 print(f"""
     {linha}
-    || Bem-vindo ao projeto FeedBaack, uma rede de doações com ||
+    || Bem-vindo ao projeto FeedBack, uma rede de doações com ||
     || o objetivo de ajudar a combater a fome mundial.         ||
     || Você pode se cadastrar como uma empresa ou supermercado ||
     || disposto a doar, ou como uma ONG ou Pessoa física para  ||
@@ -43,7 +43,7 @@ while escolha_menu != 0:
     || 1...................................: ONG para Caridade ||
     || 2....................................: Empresa Parceira ||
     || 3...............................: Supermercado parceiro ||
-    || 4..............: Família em necessidade (Pessoa Física) ||
+    || 4.......................................: Pessoa Física ||
     -------------------------------------------------------------
     || Outras ações:                                           ||
     || 5..................................: Dúvidas frequentes ||
@@ -64,31 +64,59 @@ while escolha_menu != 0:
         case 1:
             # Cadastro como ONG
 
-            print(f"\n{linha}\n--> CADASTRO ONG:")
-            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_ong)
-            tipo_cadastro = "ONG"
-            print(linha)
+            if cadastro != "":
+                print(f"""
+    {linha}
+    --> Você já está cadastrado!!!
+    {linha}
+                """)
+            else:
+                print(f"\n{linha}\n--> CADASTRO ONG:")
+                cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_ong)
+                tipo_cadastro = "ONG"
+                print(linha)
         case 2:
             # Cadastro como Empresa
 
-            print(f"\n{linha}\n--> CADASTRO EMPRESA:")
-            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_empresa)
-            tipo_cadastro = "Empresa"
-            print(linha)
+            if cadastro != "":
+                print(f"""
+    {linha}
+    --> Você já está cadastrado!!!
+    {linha}
+                """)
+            else:
+                print(f"\n{linha}\n--> CADASTRO EMPRESA:")
+                cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_empresa)
+                tipo_cadastro = "Empresa"
+                print(linha)
         case 3:
             # Cadastro como Supermercado
 
-            print(f"\n{linha}\n--> CADASTRO SUPERMERCADO:")
-            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_mercado)
-            tipo_cadastro = "Supermercado"
-            print(linha)
+            if cadastro != "":
+                print(f"""
+    {linha}
+    --> Você já está cadastrado!!!
+    {linha}
+                """)
+            else:
+                print(f"\n{linha}\n--> CADASTRO SUPERMERCADO:")
+                cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_mercado)
+                tipo_cadastro = "Supermercado"
+                print(linha)
         case 4:
             # Cadastro como Pessao Física
 
-            print(f"\n{linha}\n--> CADASTRO PESSOA FÍSICA:\n(apenas digite ENTER para dados opcionais)")
-            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_pessoa_fisica)
-            tipo_cadastro = "Pessoa Física"
-            print(linha)
+            if cadastro != "":
+                print(f"""
+    {linha}
+    --> Você já está cadastrado!!!
+    {linha}
+                """)
+            else:
+                print(f"\n{linha}\n--> CADASTRO PESSOA FÍSICA:\n(apenas digite ENTER para dados opcionais)")
+                cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_pessoa_fisica)
+                tipo_cadastro = "Pessoa Física"
+                print(linha)
         case 5:
             # Menu de Dúvidas Frequentes
 
@@ -158,7 +186,7 @@ while escolha_menu != 0:
                             marca_alimento = input("Marca: ")
                             quant_alimento = input("Quantidade: ")
                             doacao.append(subalgoritmos.menu_ongs(escolha_doacao, tipo_alimento, quant_alimento))
-                            repetir_doacao = input("Deseja realizar outra doação ? [S/N]: ").upper()
+                            repetir_doacao = input("\nDeseja realizar outra doação ? [S/N]: ").upper()
                         case 2:
 
                             # Doação em Dinheiro
@@ -171,7 +199,7 @@ while escolha_menu != 0:
                                     subalgoritmos.exibir_opcao_invalida()
                                     continue
                             doacao.append(subalgoritmos.menu_ongs(escolha_doacao, valor_doacao, "R$"))
-                            repetir_doacao = input("Deseja realizar outra doação ? [S/N]: ")
+                            repetir_doacao = input("\nDeseja realizar outra doação ? [S/N]: ")
                         case _:
                             subalgoritmos.exibir_opcao_invalida()
 
@@ -194,7 +222,7 @@ if cadastro != "":
     print(f"{linha}\n--> Dados Cadastrados {tipo_cadastro}{cadastro}\n{linha}")
 if doacao_realizada:
     for i in range(0, len(doacao), 1):
-        print(f"{linha}===={doacao[i]}\n{linha}====")
+        print(f"\n{linha}===={doacao[i]}\n{linha}====")
 print(f"""
     {linha}
     ---> Fechando o programa!!!...
