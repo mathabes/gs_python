@@ -1,12 +1,13 @@
+# Importando as funções para o funcionamento do programa
 import subalgoritmos
 
+# Programa Principal
 linha = "=" * 61
 escolha_menu = 1
-ong = ""
-empresa = ""
-mercado = ""
-pessoa_fisica = ""
-dados_necessarios_ong = ["Nome", "Email", "Telefone", "Endereço", "CNPJ", "Razão Social"]
+cadastro = ""
+tipo_cadastro = ""
+dados_necessarios_ong = ["Nome", "Email", "Telefone", "Endereço", "CNPJ", "Razão Social",
+                         "Quantidade de pessoas associadas"]
 dados_necessarios_empresa = ["Nome Fantasia", "Email", "Telefone", "Endereço", "CNPJ", "Razão Social", "Renda Mensal"]
 dados_necessarios_mercado = ["Nome Fantasia", "Email", "Telefone", "Endereço", "CNPJ", "Razão Social", "Renda Mensal"]
 dados_necessarios_pessoa_fisica = ["Nome", "Email(opcional)", "Telefone(opcional)", "Endereço", "CPF", "RG",
@@ -14,10 +15,25 @@ dados_necessarios_pessoa_fisica = ["Nome", "Email(opcional)", "Telefone(opcional
 escolha_duvida = 1
 duvidas = ["Como posso fazer uma doação para o programa?", "Quais os métodos de pagamento aceitos para doações?",
            "Existe um valor mínimo para as doações?", "Posso fazer uma doação em nome de outra pessoa?"]
+valor_doacao = 0
+doacao = []
+cont_doacao = 0
+repetir_doacao = "s"
+doacao_realizada = False
+
+# ------ Descrição do Projeto
 print(f"""
     {linha}
+    || Bem-vindo ao projeto FeedBaack, uma rede de doações com ||
+    || o objetivo de ajudar a combater a fome mundial.         ||
+    || Você pode se cadastrar como uma empresa ou supermercado ||
+    || disposto a doar, ou como uma ONG ou Pessoa física para  ||
+    || receber doações através de cartões que funcionarão como ||
+    || uma espécie de “vale-alimentação”, os EatCard.          ||
     {linha}
         """)
+
+# ------ Menu geral de ações
 while escolha_menu != 0:
     print(f"""
     {linha}
@@ -25,7 +41,7 @@ while escolha_menu != 0:
     {linha}
     || Cadastre-se como:                                       ||
     || 1...................................: ONG para Caridade ||
-    || 2............................: Empresa Parceira Doadora ||
+    || 2....................................: Empresa Parceira ||
     || 3...............................: Supermercado parceiro ||
     || 4..............: Família em necessidade (Pessoa Física) ||
     -------------------------------------------------------------
@@ -46,25 +62,41 @@ while escolha_menu != 0:
         case 0:
             break
         case 1:
+            # Cadastro como ONG
+
             print(f"\n{linha}\n--> CADASTRO ONG:")
-            ong = subalgoritmos.cadastro_parceiros(dados_necessarios_ong)
+            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_ong)
+            tipo_cadastro = "ONG"
             print(linha)
         case 2:
+            # Cadastro como Empresa
+
             print(f"\n{linha}\n--> CADASTRO EMPRESA:")
-            empresa = subalgoritmos.cadastro_parceiros(dados_necessarios_empresa)
+            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_empresa)
+            tipo_cadastro = "Empresa"
             print(linha)
         case 3:
+            # Cadastro como Supermercado
+
             print(f"\n{linha}\n--> CADASTRO SUPERMERCADO:")
-            mercado = subalgoritmos.cadastro_parceiros(dados_necessarios_mercado)
+            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_mercado)
+            tipo_cadastro = "Supermercado"
             print(linha)
         case 4:
+            # Cadastro como Pessao Física
+
             print(f"\n{linha}\n--> CADASTRO PESSOA FÍSICA:\n(apenas digite ENTER para dados opcionais)")
-            pessoa_fisica = subalgoritmos.cadastro_parceiros(dados_necessarios_pessoa_fisica)
+            cadastro = subalgoritmos.cadastro_parceiros(dados_necessarios_pessoa_fisica)
+            tipo_cadastro = "Pessoa Física"
             print(linha)
         case 5:
+            # Menu de Dúvidas Frequentes
+
             while escolha_duvida != 0:
                 escolha_duvida = subalgoritmos.exibir_menu_duvidas(duvidas)
                 match escolha_duvida:
+
+                    # Respostas
                     case 0:
                         break
                     case 1:
@@ -102,33 +134,53 @@ while escolha_menu != 0:
                     case _:
                         subalgoritmos.exibir_opcao_invalida()
         case 6:
-            if mercado != "" or empresa != "":
-                print(f"""
-    {linha}
-    ||                         DOAÇÕES                         ||
-    {linha}
-    || 1 --> Alimento                                          ||
-    || 2 --> Dinheiro                                          ||
-    {linha}
-                """)
-                escolha_doacao = int(input("---> Como Supermercado/Empresa, deseja realizar a doação de: "))
-                match escolha_doacao:
-                    case 1:
-                        print("Doação de alimento selecionada!\n(Este tipo de doação não faz parte do nosso benefício "
-                              "EatCard)")
-                        tipo_alimento = input("Digite o alimento que deseja doar: ")
-                        marca_alimento = input("Marca: ")
-                        quant_alimento = input("Quantidade: ")
-                        subalgoritmos.menu_ongs(tipo_alimento)
-                    case 2:
-                        print("Doação de dinheiro selecionada!")
-                        valor_doacao = float(input("Valor: "))
-                        subalgoritmos.menu_ongs(valor_doacao)
-                    case _:
-                        subalgoritmos.exibir_opcao_invalida()
-            elif ong != "" or pessoa_fisica != "":
-                print("")
+            # Menu de doações
+
+            if tipo_cadastro == "Supermercado" or tipo_cadastro == "Empresa":
+                doacao_realizada = True
+                while repetir_doacao == "s" or repetir_doacao == "S":
+                    print(f"""
+        {linha}
+        ||                         DOAÇÕES                         ||
+        {linha}
+        || 1 --> Alimento                                          ||
+        || 2 --> Dinheiro                                          ||
+        {linha}
+                    """)
+                    escolha_doacao = int(input("---> Como Supermercado/Empresa, deseja realizar a doação de: "))
+                    match escolha_doacao:
+                        case 1:
+
+                            # Doação de Alimento
+                            print("Doação de alimento selecionada!\n(Este tipo de doação não faz parte do nosso "
+                                  "benefício EatCard)")
+                            tipo_alimento = input("Digite o alimento que deseja doar: ")
+                            marca_alimento = input("Marca: ")
+                            quant_alimento = input("Quantidade: ")
+                            doacao.append(subalgoritmos.menu_ongs(escolha_doacao, tipo_alimento, quant_alimento))
+                            repetir_doacao = input("Deseja realizar outra doação ? [S/N]: ").upper()
+                        case 2:
+
+                            # Doação em Dinheiro
+                            print("Doação de dinheiro selecionada!")
+                            while True:
+                                try:
+                                    valor_doacao = float(input("Valor: R$ "))
+                                    break
+                                except ValueError:
+                                    subalgoritmos.exibir_opcao_invalida()
+                                    continue
+                            doacao.append(subalgoritmos.menu_ongs(escolha_doacao, valor_doacao, "R$"))
+                            repetir_doacao = input("Deseja realizar outra doação ? [S/N]: ")
+                        case _:
+                            subalgoritmos.exibir_opcao_invalida()
+
+            # Mensagem caso o usuário tenha se cadastrado como ONG ou PF e tente realizar doações
+            elif tipo_cadastro == "ONG" or tipo_cadastro == "Pessoa Física":
+                print(f"{linha}\nNão é possível realizar doações sendo ONG ou Pessoa física...\n{linha}")
             else:
+
+                # Exigindo cadastro case o usuário tente realizar doações
                 print(f"""
     {linha}
     ---> Para ir à área de doação, primeiro deve-se 
@@ -136,14 +188,13 @@ while escolha_menu != 0:
     {linha}""")
         case _:
             subalgoritmos.exibir_opcao_invalida()
-if ong != "":
-    print(f"{linha}\n--> Dados Cadastrados ONG{ong}\n{linha}")
-if empresa != "":
-    print(f"{linha}\n--> Dados Cadastrados Empresa{empresa}\n{linha}")
-if mercado != "":
-    print(f"{linha}\n--> Dados Cadastrados Supermercado{mercado}\n{linha}")
-if pessoa_fisica != "":
-    print(f"{linha}\n--> Dados Cadastrados Pessoa Física{pessoa_fisica}\n{linha}")
+
+# Exibindo todas as ações realizadas antes de finalizar o programa
+if cadastro != "":
+    print(f"{linha}\n--> Dados Cadastrados {tipo_cadastro}{cadastro}\n{linha}")
+if doacao_realizada:
+    for i in range(0, len(doacao), 1):
+        print(f"{linha}===={doacao[i]}\n{linha}====")
 print(f"""
     {linha}
     ---> Fechando o programa!!!...

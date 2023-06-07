@@ -13,7 +13,7 @@ def cadastro_parceiros(dados_necessarios) -> str:
     dados_informados = ""
     dados = []
     for i in range(0, len(dados_necessarios), 1):
-        if dados_necessarios[i] == "Renda Mensal":
+        if dados_necessarios[i] == "Renda Mensal" or dados_necessarios[i] == "Quantidade de pessoas associadas":
             dados.append(cadastro_dado_float(dados_necessarios[i]))
             dados_informados += f"\n|| {dados_necessarios[i]}: R$ {dados[i]}"
         else:
@@ -55,7 +55,7 @@ def exibir_menu_duvidas(duvidas) -> int:
     return escolha
 
 
-def menu_ongs(doacao) -> None:
+def menu_ongs(escolha_doacao, conteudo_doacao, medida) -> str:
     escolha = 0
     ongs = ["Caça-Fome", "Esperança Global", "Resgate da Dignidade", "Luz da Esperança"]
     print(f"""
@@ -75,7 +75,10 @@ def menu_ongs(doacao) -> None:
         except ValueError:
             exibir_opcao_invalida()
             continue
-    if doacao is float:
-        print(f"Doação realizada a {ongs[escolha + 1]} no valor de {doacao} reais.")
+    if escolha_doacao == 1:
+        print(f"\n--> Doação de {medida} de {conteudo_doacao} cadastrada para a ONG {ongs[escolha - 1]}.")
+        resp_doacao = f"\n--> Doação de {medida} de {conteudo_doacao} cadastrada para a ONG {ongs[escolha - 1]}."
     else:
-        print(f"Doação de {doacao} realizada a {ongs[escolha + 1]}.")
+        print(f"\n--> Doação cadastrada a {ongs[escolha - 1]} no valor de {medida} {conteudo_doacao}.")
+        resp_doacao = f"\n--> Doação cadastrada a {ongs[escolha - 1]} no valor de {medida} {conteudo_doacao}."
+    return resp_doacao
