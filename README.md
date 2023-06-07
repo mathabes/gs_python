@@ -30,7 +30,9 @@ A partir disso, uma quantidade maior de famílias do mundo inteiro terá acesso 
 
   O programa permite ao usuário realizar o cadastro como qualquer um dos agentes principais citados acima, ou como Pessoa Física. Além disso, consegue visualizar possíveis dúvidas em relação ao projeto.
   
-  Assim, após realizar o cadastro, e somente após isso, o usuário pode simular uma doação em dinheiro ou alimento a uma das ONGs já cadastradas no programa (foram utilizadas informações fictícias para a implementação das mesmas).
+  Assim, após realizar o cadastro, e somente após isso, o usuário pode simular uma doação em dinheiro ou alimento a uma das ONGs já cadastradas no programa (foram utilizadas informações fictícias para a implementação das mesmas) e repetir isso quantas vezes quiser.
+  
+  Se o usuário tentar se cadastrar novamente, o programa exibirá "Você já está cadastrado". Caso seja digitado um valor do tipo string em um campo que necessite de um valor int/float, será exibida uma mensagem de erro e retornará ao campo anterior. O que também ocorrerá caso o usuário digite um valor não listado em qualquer menu de ações.
   
   Ao fim do programa, o usuário visualizará todas as ações realizadas anteriormente.
   
