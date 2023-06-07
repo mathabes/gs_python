@@ -24,7 +24,7 @@ doacao_realizada = False
 # ------ Descrição do Projeto
 print(f"""
     {linha}
-    || Bem-vindo ao projeto FeedBack, uma rede de doações com ||
+    || Bem-vindo ao projeto FeedBack, uma rede de doações com  ||
     || o objetivo de ajudar a combater a fome mundial.         ||
     || Você pode se cadastrar como uma empresa ou supermercado ||
     || disposto a doar, ou como uma ONG ou Pessoa física para  ||
@@ -189,7 +189,7 @@ while escolha_menu != 0:
                             tipo_alimento = input("Digite o alimento que deseja doar: ")
                             marca_alimento = input("Marca: ")
                             quant_alimento = input("Quantidade: ")
-                            doacao.append(subalgoritmos.menu_ongs(escolha_doacao, tipo_alimento, quant_alimento))
+                            doacao.append(subalgoritmos.menu_ongs_doacao(escolha_doacao, tipo_alimento, quant_alimento))
                             repetir_doacao = input("\nDeseja realizar outra doação ? [S/N]: ").upper()
                         case 2:
 
@@ -202,7 +202,7 @@ while escolha_menu != 0:
                                 except ValueError:
                                     subalgoritmos.exibir_opcao_invalida()
                                     continue
-                            doacao.append(subalgoritmos.menu_ongs(escolha_doacao, valor_doacao, "R$"))
+                            doacao.append(subalgoritmos.menu_ongs_doacao(escolha_doacao, valor_doacao, "R$"))
                             repetir_doacao = input("\nDeseja realizar outra doação ? [S/N]: ")
                         case _:
                             subalgoritmos.exibir_opcao_invalida()
@@ -218,6 +218,11 @@ while escolha_menu != 0:
     ---> Para ir à área de doação, primeiro deve-se 
     realizar o cadastro!!!...
     {linha}""")
+            print(f"""
+    {linha}
+    ---> Voltando...
+    {linha}    
+                                    """)
         case _:
             subalgoritmos.exibir_opcao_invalida()
 

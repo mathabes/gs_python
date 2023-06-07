@@ -61,7 +61,7 @@ def exibir_menu_duvidas(duvidas) -> int:
 
 # Função que finaliza a área de doaçao, exibindo as ongs pré-cadastradas
 # e recebendo tanto o tipo da doação, quanto seu contéudo
-def menu_ongs(escolha_doacao, conteudo_doacao, medida) -> str:
+def menu_ongs_doacao(escolha_doacao, conteudo_doacao, medida) -> str:
     escolha = 0
     ongs = ["Caça-Fome", "Esperança Global", "Resgate da Dignidade", "Luz da Esperança"]
     print(f"""
